@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="demoRegister.css" /> 
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm" novalidate>
+            <div class="form-group">
+                <label for="login_email">Email</label>
+                <input type="text" id="login_email" name="login_email" placeholder="Enter your email"/>
+                <span class="error" id="login_email_error"></span>
+            </div>
+            <div class="form-group">
+                <label for="login_password">Password</label>
+                <input type="password" id="login_password" name="login_password" placeholder="Enter password"/>
+                <span class="error" id="login_password_error"></span>
+            </div>
+            <div class="buttons">
+                <button type="submit" id="login_submit">Log In</button>
+            </div>
+        </form>
+    </div>
+    <script src="demoLogin.js"></script> 
+</body>
+</html>

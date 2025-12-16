@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTEC Product Listing (Bootstrap)</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="moto1.css"/> 
+    
+    <script type="module">
+        import { ShoppingCart, User } from 'https://unpkg.com/lucide@latest/dist/esm/lucide.js?module';
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartIcon = document.getElementById('cart-icon');
+            if (cartIcon) {
+                cartIcon.innerHTML = ShoppingCart.toSvg({ class: 'w-6 h-6 text-white' }); 
+            }
+            const userIcon = document.getElementById('user-icon');
+            if (userIcon) {
+                userIcon.innerHTML = User.toSvg({ class: 'w-6 h-6 text-white' });
+            }
+        });
+    </script>
+    
+    <style>
+        .header-bg { background-color: #343a40; /* Dark gray */ }
+        .nav-bg { background-color: #495057; /* Slightly lighter gray */ }
+        .sidebar-bg { background-color: #f8f9fa; /* Light background for sidebar */ }
+        .sidebar-link { 
+            display: block; 
+            padding: 0.5rem 1rem; 
+            color: #495057; 
+            text-decoration: none;
+            transition: background-color 0.15s;
+        }
+        .sidebar-link:hover { 
+            background-color: #e9ecef;
+        }
+        .sidebar-link.font-bold {
+            background-color: #6c757d !important; 
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero-banner">
+    <div class="banner-content">
+        <h1>Ignite Your Engine of Creativity</h1>
+        <p>Your workspace for drafting epic moto journeys and designs.</p>
+        <a href="demoLogin.html" class="cta-button">Login</a>
+        <a href="demoRegister.html" class="cta-button1">Register</a>
+    </div>
+    </header>
+
+    <header class="header-bg p-3 shadow-lg">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="logo">
+                <img src="https://www.shutterstock.com/image-vector/motorcycle-idea-vector-logo-design-260nw-2380708267.jpg" alt="" height="40">
+            </div>
+
+            <div class="flex-grow-1 mx-4" style="max-width: 500px;">
+                <div class="input-group">
+                    <input type="text" placeholder="Search a Product..." class="form-control text-gray-800">
+                    <button class="btn btn-secondary text-white">Search</button>
+                </div>
+            </div>
+
+            <a href="#" id="open-cart-btn" class="position-relative p-1 me-3 text-white">
+    <div id="cart-icon"></div>
+    <span id="cart-count" class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+</a>
+                <a href="myAccount.html" class="p-1 text-white ms-2">
+    <img src="https://via.placeholder.com/32/FFFFFF/000000?text=P" alt="Profile" 
+         style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid white; object-fit: cover;">
+</a>
+            </div>
+            
+        </div>
+    </header>
+    
+    <nav class="nav-bg shadow-sm">
+        <div class="container">
+            <ul class="nav text-white justify-content-start overflow-auto flex-nowrap" style="white-space: nowrap;">
+                <li class="nav-item"> <a class="nav-link text-white px-3" href="#">Home</a></li>
+                <li class="nav-item"> <a class="nav-link text-white px-3" href="#">All Products</a></li>
+                <li class="nav-item"> <a class="nav-link text-white px-3" href="#">My Account</a></li>
+                <li class="nav-item"> <a class="nav-link text-white px-3" href="#">Shopping Cart</a></li>
+                <li class="nav-item"> <a class="nav-link text-white px-3" href="#">Contact Us</a></li>
+                <li class="nav-item"> <a class="nav-link text-white px-3" href="#">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container my-4">
+        <div class="row">
+
+            <div class="col-md-3 mb-4 mb-md-0">
+                <div class="sidebar-bg rounded shadow mb-4 overflow-hidden">
+                    <h2 class="h5 p-3 mb-0 border-bottom">Categories</h2>
+                    <nav class="nav flex-column text-lg">
+                        <a href="#" class="sidebar-link">50cc</a>
+                        <a href="#" class="sidebar-link">50-150cc</a>
+                        <a href="#" class="sidebar-link">150cc+</a>
+                        <a href="#" class="sidebar-link">Electric</a>
+                        <a href="#" class="sidebar-link font-bold">All products</a>
+                    </nav>
+                </div>
+
+                <div class="sidebar-bg rounded shadow overflow-hidden">
+                    <h2 class="h5 p-3 mb-0 border-bottom">Brands</h2>
+                    <nav class="nav flex-column text-lg">
+                        <a href="#" class="sidebar-link">Yamaha</a>
+                        <a href="#" class="sidebar-link">Kawasaki</a>
+                        <a href="#" class="sidebar-link">Honda</a>
+                        <a href="#" class="sidebar-link">Suzuki</a>
+                        <a href="#" class="sidebar-link">BMW</a>
+                        <a href="#" class="sidebar-link font-bold">All brands</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+
+                    <!--
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Yamaha 150</h3>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 1000</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3 show-details-btn"
+                                    data-name="Yamaha 150"
+                                    data-price="1000"
+                                    data-cc="150cc"
+                                    data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUANVyaEgEA4O4JTsJxYhSR--0gdUKvEUfgA&s" 
+                                    >Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    
+                    <!--
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            
+                            <h3 class="card-title text-lg fw-bold mt-3">Kawasaki Ninja 400</h3>
+                            
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img 
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaYdtoC9hrU8-mEQe-0lZ3dmnhYxpH3gCJdw&s" 
+                                    alt="Ninja 400" 
+                                    class="img-fluid" 
+                                    style="max-height: 100%;">
+                            </div>
+                            
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 5500</p>
+                                
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#productDetailModal"
+                                    data-name="Kawasaki Ninja 400"
+                                    data-price="5500"
+                                    data-cc="400cc"
+                                    data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaYdtoC9hrU8-mEQe-0lZ3dmnhYxpH3gCJdw&s" 
+                                    >Details</a>
+                                    
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    
+                    
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Yamaha 150</h3>
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUANVyaEgEA4O4JTsJxYhSR--0gdUKvEUfgA&s" alt="Y150" class="img-fluid" style="max-height: 100%;">
+                            </div>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 1000</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3">Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Yamaha 250</h3>
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8ZYzGnskGK--hJs62NO5rxNNmUG1h2iaqzg&s" alt="Y250" class="img-fluid" style="max-height: 100%;">
+                            </div>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 1000</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3">Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Yamaha 350</h3>
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVqomQY8ATVmKBNaEYQVfpejueZzZPeG-5zw&s" alt="Y350" class="img-fluid" style="max-height: 100%;">
+                            </div>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 4000</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3">Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Kawasaki 150</h3>
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCKqp1UYMKAR3dhYBLFkpLN6AcH-xxf1D4Cg&s" alt="K150" class="img-fluid" style="max-height: 100%;">
+                            </div>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 2500</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3">Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Kawasaki 250</h3>
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaYdtoC9hrU8-mEQe-0lZ3dmnhYxpH3gCJdw&s" alt="K250" class="img-fluid" style="max-height: 100%;">
+                            </div>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 1000</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3">Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Kawasaki 350</h3>
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img src="https://images-na.ssl-images-amazon.com/images/I/71cAl0LbHgL.jpg" alt="K350" class="img-fluid" style="max-height: 100%;">
+                            </div>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 4000</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3">Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Honda 150</h3>
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img src="https://image.made-in-china.com/202f0j00GELeFvdrgQbp/New-Sport-Enduro-200cc-250-Cc-Motorbike-4-Stroke-off-Road-Motorcycles-Enduro-Motorbike.webp" alt="H150" class="img-fluid" style="max-height: 100%;">
+                            </div>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 1000</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3">Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Honda 250</h3>
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img src="https://s.alicdn.com/@sc04/kf/He8bfd0d47c224907aeea45637a52359bi/Small-New-50cc-Hybrid-Scooter-Gasoline-Gas-Scooters-Motorbikes-for-Sale-in-Hanoi-80cc-Motorbike.jpg" alt="H250" class="img-fluid" style="max-height: 100%;">
+                            </div>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 1000</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3">Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Honda 350</h3>
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTApEOhlVt6smHXPnsPO-KhpQsIE8-4XhtLeA&s" alt="H350" class="img-fluid" style="max-height: 100%;">
+                            </div>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 3000</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3">Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+    
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Suzuki 150</h3>
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVTG5OZKFVmcqmT4TfjLEbkebSQZpxtGopJQ&s" alt="S150" class="img-fluid" style="max-height: 100%;">
+                            </div>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 3000</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3">Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Suzuki 250</h3>
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img src="https://diecastmodelcentre.co.uk/cdn/shop/products/kawasaki-klx250sr-diecast-model-motorcycle-green-118-scale-maisto.jpg?v=1694794314" alt="S250" class="img-fluid" style="max-height: 100%;">
+                            </div>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 1000</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3">Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card product-card text-center h-100 shadow-sm">
+                            <h3 class="card-title text-lg fw-bold mt-3">Suzuki 350</h3>
+                            <div class="border p-2 mb-3 d-flex align-items-center justify-content-center" style="height: 192px;">
+                                <img src="https://m.media-amazon.com/images/I/61GIoC-1xTL._AC_SL1500_.jpg" alt="S350" class="img-fluid" style="max-height: 100%;">
+                            </div>
+                            <div class="card-body pt-0">
+                                <p class="text-danger fs-5 fw-semibold mb-2">Price: $ 3000</p>
+                                <div class="d-flex justify-content-center space-x-4 small">
+                                    <a href="#" class="btn btn-sm btn-link text-primary text-decoration-underline me-3">Details</a>
+                                    <button class="btn btn-sm btn-outline-success rounded-pill px-3">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-200 text-gray-700 py-3 mt-8">
+        <div class="container mx-auto text-center text-sm">
+            &copy; 2025 - 2030 by btec
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="cart-modal">
+    <div class="cart-header">
+        <h2 class="h5 mb-0">Your Shopping Cart</h2>
+        <button id="close-cart" class="close-btn text-dark bg-transparent border-0 fs-3">&times;</button>
+    </div>
+    
+    <div id="cart-items-container" class="cart-items-container">
+        <p id="empty-cart-message" class="text-muted text-center p-4">Your cart is empty.</p>
+    </div>
+    
+    <div class="cart-footer">
+        <p class="h6">Total: $<span id="cart-total">0.00</span></p>
+        <button id="checkout-btn" class="checkout-btn btn btn-success w-100 mt-2">Proceed to Checkout</button>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="details.js"></script>
+<script src="cart.js"></script> 
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- 1. MODAL DETAIL POPULATION LOGIC ---
+        
+        // Get the modal element by its exact ID
+        const detailModalElement = document.getElementById('productDetailModal');
+        
+        if (detailModalElement) {
+            // Listen for the Bootstrap 'show.bs.modal' event
+            // This event fires just before the modal pops up.
+            detailModalElement.addEventListener('show.bs.modal', function (event) {
+                
+                // Get the link element that triggered the modal (the 'Details' button)
+                const button = event.relatedTarget; 
+                
+                // Extract data from the data-attributes of the clicked link
+                const name = button.dataset.name || 'N/A';
+                const price = button.dataset.price || '0.00';
+                const cc = button.dataset.cc || 'N/A';
+                const imgUrl = button.dataset.img || '';
+
+                // Target and populate the elements inside the modal using their IDs
+                document.getElementById('modal-product-name').textContent = name;
+                document.getElementById('modal-product-price').textContent = `$ ${price}`;
+                document.getElementById('modal-product-cc').textContent = cc;
+                document.getElementById('modal-product-image').src = imgUrl;
+
+                // Update the modal's main title
+                document.getElementById('productDetailModalLabel').textContent = `${name} Details`;
+            });
+        }
+        
+        // --- 2. SEARCH/FILTER LOGIC (from previous steps) ---
+        const searchInput = document.querySelector('.input-group input[type="text"]');
+        const searchButton = document.querySelector('.input-group button');
+        // Ensure this targets the correct product grid wrapper:
+        const productContainer = document.querySelector('.col-md-9 > .row');
+        
+        function filterProducts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            if (!productContainer) return; 
+
+            const products = productContainer.querySelectorAll('.col'); 
+
+            products.forEach(productCol => {
+                const titleElement = productCol.querySelector('.card-title');
+                if (titleElement) {
+                    const productName = titleElement.textContent.toLowerCase();
+                    
+                    if (productName.includes(searchTerm)) {
+                        productCol.style.display = 'block'; 
+                    } else {
+                        productCol.style.display = 'none'; 
+                    }
+                }
+            });
+        }
+
+        if (searchButton) {
+            searchButton.addEventListener('click', (event) => {
+                event.preventDefault(); 
+                filterProducts();
+            });
+        }
+        
+        if (searchInput) {
+            searchInput.addEventListener('keyup', filterProducts);
+            searchInput.addEventListener('change', filterProducts);
+        }
+    });
+</script>
+<!--
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- 1. MODAL DETAIL POPULATION LOGIC ---
+        
+        // Get the modal element by its ID
+        const detailModalElement = document.getElementById('productDetailModal');
+        
+        if (detailModalElement) {
+            // Listen for the Bootstrap 'show.bs.modal' event
+            detailModalElement.addEventListener('show.bs.modal', function (event) {
+                
+                // The relatedTarget is the HTML element that triggered the modal (your 'Details' link)
+                const button = event.relatedTarget; 
+                
+                // Extract data from the data-attributes of the clicked link
+                const name = button.dataset.name || 'N/A';
+                const price = button.dataset.price || '0.00';
+                const cc = button.dataset.cc || 'N/A';
+                const imgUrl = button.dataset.img || '';
+
+                // Target the elements inside the modal using their IDs
+                document.getElementById('modal-product-name').textContent = name;
+                document.getElementById('modal-product-price').textContent = `$ ${price}`;
+                document.getElementById('modal-product-cc').textContent = cc;
+                document.getElementById('modal-product-image').src = imgUrl;
+
+                // For extra safety, ensure the modal title is updated
+                document.getElementById('productDetailModalLabel').textContent = `${name} Details`;
+            });
+        }
+        
+        // --- 2. SEARCH/FILTER LOGIC (kept for completeness) ---
+        const searchInput = document.querySelector('.input-group input[type="text"]');
+        const searchButton = document.querySelector('.input-group button');
+        // Ensure this selector targets the correct product grid wrapper:
+        const productContainer = document.querySelector('.col-md-9 > .row');
+        
+        function filterProducts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            if (!productContainer) return; // Exit if container isn't found
+
+            // Select all direct product columns
+            const products = productContainer.querySelectorAll('.col'); 
+
+            products.forEach(productCol => {
+                const titleElement = productCol.querySelector('.card-title');
+                if (titleElement) {
+                    const productName = titleElement.textContent.toLowerCase();
+                    
+                    if (productName.includes(searchTerm)) {
+                        productCol.style.display = 'block'; 
+                    } else {
+                        productCol.style.display = 'none'; 
+                    }
+                }
+            });
+        }
+
+        if (searchButton) {
+            searchButton.addEventListener('click', (event) => {
+                event.preventDefault(); 
+                filterProducts();
+            });
+        }
+        
+        if (searchInput) {
+            searchInput.addEventListener('keyup', filterProducts);
+            searchInput.addEventListener('change', filterProducts);
+        }
+        
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const detailModalElement = document.getElementById('productDetailModal');
+        
+        // Listen for Bootstrap's 'show.bs.modal' event
+        detailModalElement.addEventListener('show.bs.modal', function (event) {
+            // Get the button that triggered the modal
+            const button = event.relatedTarget; 
+            
+            // 1. Extract data from the button's data-attributes
+            const name = button.dataset.name || 'N/A';
+            const price = button.dataset.price || '0.00';
+            const cc = button.dataset.cc || 'N/A';
+            const imgUrl = button.dataset.img || '';
+
+            // 2. Target the elements inside the modal
+            document.getElementById('modal-product-name').textContent = name;
+            document.getElementById('modal-product-price').textContent = `$ ${price}`;
+            document.getElementById('modal-product-cc').textContent = cc;
+            document.getElementById('modal-product-image').src = imgUrl;
+        });
+
+        // ... (Keep the search logic separate below this) ...
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- 🧪 DEBUGGING STEP: 
+        // 1. Check if the element exists. 
+        const detailButtons = document.querySelectorAll('.show-details-btn');
+        console.log(`Found ${detailButtons.length} detail buttons.`);
+        
+        // 2. Check if the click event is registering.
+        detailButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                // If you see this alert, the script is running and the click is working!
+                alert(`Clicked on: ${button.dataset.name}`); 
+                
+                // If the alert works, the problem is with the 'bootstrap.Modal' part.
+                
+                // ... (rest of the logic to populate and show the modal) ...
+                
+            });
+        });
+        // --- END DEBUGGING STEP ---
+        
+        // ... (The rest of your search and detail script) ...
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Detail Modal Logic ---
+        
+        // Initialize the Bootstrap Modal component
+        // This relies on the Bootstrap JS file loaded just above.
+        const detailModalElement = document.getElementById('productDetailModal');
+        const detailModal = new bootstrap.Modal(detailModalElement);
+        
+        // Find all "Details" buttons
+        const detailButtons = document.querySelectorAll('.show-details-btn');
+
+        detailButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault(); // Stop the default link action (navigating)
+
+                // 1. Extract data from the clicked button's data-attributes
+                const name = button.dataset.name || 'N/A';
+                const price = button.dataset.price || '0.00';
+                const cc = button.dataset.cc || 'N/A';
+                const imgUrl = button.dataset.img || '';
+
+                // 2. Target the elements inside the modal
+                const modalName = document.getElementById('modal-product-name');
+                const modalPrice = document.getElementById('modal-product-price');
+                const modalCC = document.getElementById('modal-product-cc');
+                const modalImage = document.getElementById('modal-product-image');
+
+                // 3. Populate the modal with the extracted data
+                if (modalName) modalName.textContent = name;
+                if (modalPrice) modalPrice.textContent = `$ ${price}`;
+                if (modalCC) modalCC.textContent = cc;
+                if (modalImage) modalImage.src = imgUrl;
+
+                // 4. Display the modal
+                detailModal.show();
+            });
+        });
+        
+        // --- Search/Filter Logic ---
+        const searchInput = document.querySelector('.input-group input[type="text"]');
+        const searchButton = document.querySelector('.input-group button');
+        const productContainer = document.querySelector('.row.row-cols-1');
+        
+        function filterProducts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const products = productContainer.querySelectorAll('.col');
+
+            products.forEach(productCol => {
+                const titleElement = productCol.querySelector('.card-title');
+                if (titleElement) {
+                    const productName = titleElement.textContent.toLowerCase();
+                    
+                    if (productName.includes(searchTerm)) {
+                        productCol.style.display = 'block'; 
+                    } else {
+                        productCol.style.display = 'none'; 
+                    }
+                }
+            });
+        }
+
+        if (searchButton) {
+            searchButton.addEventListener('click', (event) => {
+                event.preventDefault(); 
+                filterProducts();
+            });
+        }
+        
+        if (searchInput) {
+            searchInput.addEventListener('keyup', filterProducts);
+            searchInput.addEventListener('change', filterProducts);
+        }
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.querySelector('.input-group input[type="text"]');
+        const searchButton = document.querySelector('.input-group button');
+        const productContainer = document.querySelector('.row.row-cols-1'); // The main grid container
+        
+        // Function to perform the search/filtering
+        function filterProducts() {
+            // Convert input value to lowercase for case-insensitive searching
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            // Get all product columns
+            const products = productContainer.querySelectorAll('.col');
+
+            products.forEach(productCol => {
+                // Get the product title from within the card
+                const titleElement = productCol.querySelector('.card-title');
+                if (titleElement) {
+                    const productName = titleElement.textContent.toLowerCase();
+                    
+                    // Check if the product name contains the search term
+                    if (productName.includes(searchTerm)) {
+                        productCol.style.display = 'block'; // Show the product
+                    } else {
+                        productCol.style.display = 'none'; // Hide the product
+                    }
+                }
+            });
+        }
+
+        // 1. Trigger search when the search button is clicked
+        if (searchButton) {
+            searchButton.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent any default button action
+                filterProducts();
+            });
+        }
+        
+        // 2. Trigger search dynamically as the user types (live search)
+        if (searchInput) {
+            searchInput.addEventListener('keyup', filterProducts);
+            searchInput.addEventListener('change', filterProducts); // Also catch changes not triggered by keypress
+        }
+
+        // Optional: Reset button functionality (if you want the search button to clear the filter)
+        // You could modify the button logic if the search input is empty.
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize the Bootstrap Modal component
+        const detailModal = new bootstrap.Modal(document.getElementById('productDetailModal'));
+        
+        // Find all "Details" buttons
+        const detailButtons = document.querySelectorAll('.show-details-btn');
+
+        detailButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault(); // Stop the default link action (navigating)
+
+                // 1. Extract data from the clicked button's data-attributes
+                const name = button.dataset.name;
+                const price = button.dataset.price;
+                const cc = button.dataset.cc;
+                const imgUrl = button.dataset.img;
+
+                // 2. Target the elements inside the modal
+                const modalName = document.getElementById('modal-product-name');
+                const modalPrice = document.getElementById('modal-product-price');
+                const modalCC = document.getElementById('modal-product-cc');
+                const modalImage = document.getElementById('modal-product-image');
+
+                // 3. Populate the modal with the extracted data
+                if (modalName) modalName.textContent = name;
+                if (modalPrice) modalPrice.textContent = `$ ${price}`;
+                if (modalCC) modalCC.textContent = cc;
+                if (modalImage) modalImage.src = imgUrl;
+
+                // 4. Display the modal
+                detailModal.show();
+            });
+        });
+    });
+</script>-->
+</body>
+</html>

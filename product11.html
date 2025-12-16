@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suzuki 250 - Product Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styling for centering and container */
+        body {
+            background-color: #f8f9fa;
+        }
+        .detail-container {
+            max-width: 900px;
+            margin-top: 50px;
+        }
+        .product-image-box {
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container detail-container">
+        <div class="card shadow-lg p-4">
+            <div class="row g-4">
+                
+                <!-- Product Image (50% Width on medium/large screens) -->
+                <div class="col-md-6">
+                    <div class="product-image-box">
+                        <img 
+                            src="https://diecastmodelcentre.co.uk/cdn/shop/products/kawasaki-klx250sr-diecast-model-motorcycle-green-118-scale-maisto.jpg?v=1694794314" 
+                            alt="Suzuki 250 Product Image" 
+                            class="img-fluid"
+                            style="max-height: 100%; object-fit: contain;"
+                        >
+                    </div>
+                </div>
+
+                <!-- Product Details (50% Width on medium/large screens) -->
+                <div class="col-md-6 d-flex flex-column justify-content-center">
+                    
+                    <!-- Product Name -->
+                    <h1 class="display-5 fw-bold mb-3">Suzuki 250</h1>
+                    
+                    <hr class="my-3">
+
+                    <!-- Price -->
+                    <p class="text-danger fs-3 fw-bolder mb-4">
+                        Price: $ 1000
+                    </p>
+                    
+                    <!-- Additional placeholder info/action -->
+                    <p class="text-muted">
+                        This is a placeholder for a detailed description. In a real application, more technical specifications would be listed here.
+                    </p>
+
+                
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS (Needed if using interactive components like Collapse/Carousel, though not strictly for this static page) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
